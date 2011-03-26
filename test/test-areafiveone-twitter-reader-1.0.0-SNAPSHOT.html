@@ -11,10 +11,14 @@
 	@import "css/qunit.css";
 	@import "../css/areafiveone-twitter-reader-1.0.0-SNAPSHOT.css";
 </style>
-
+<script type='text/javascript'>
+	$().ready(function(){
+		$.twitterReader("#contenedor");	
+	});
+</script> 
 </head> 
 <html>
 <body>
-	
+	<div id="contenedor"></div>
 </body>
 </html>
