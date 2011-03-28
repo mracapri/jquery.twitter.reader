@@ -23,11 +23,11 @@
 
 // Autor: 	Mario Rivera Angeles (lis.mario.rivera@gmail.com)
 // Twitter:  	twitter.com/mra_capri
-// Objetivo: 	Plugin que incrusta una componente para lectura del Twitter RSS
+// Objetivo: 	Plugin que incrusta una componente de lectura de Twitter para RSS
 // Version: 	1.0.0-SNAPSHOT
 
 /**
- * Inicia closure
+ * Inicia closure de plugin
  */
 (function($) {
 
@@ -40,7 +40,7 @@
 	 */
 	var methods = {
 		/**
-		 * Inicia la calculadora
+		 * Inicia TwitterReader
 		 * @param {array} [options] Recibe el arreglo de opciones del plugin
 		 */		
 		init : function(options){
@@ -49,7 +49,7 @@
 	};
 
 	/**
-	 * Plugin jQuery valle del bit que sirve remarcar los componentes
+	 * Plugin jQuery de area51 que tiene como objetivo presentar un top twitt
 	 * @param {array} [options] Recibe el arreglo de opciones del plugin
 	 * @return {object} 
 	 */
@@ -66,7 +66,7 @@
 				opts = $.extend({}, opts, {"result":result});
 			}
 			
-			// verifica si las opciones viene en el closure, sino
+			// verifica si las opciones vienen en closure, sino
 			// le asigna valores por default
 			var _options = !options ? opts : options;
 			if(_options.hasOwnProperty(COMMAND) && !_options.hasOwnProperty(CSS)){
@@ -95,7 +95,7 @@
 	
 	/**
 	 * Escribe en el log
-	 * @param {object} $object El objeto que va escribirse en el log
+	 * @param {object} $object El objeto escribira en el log del explorer
 	 * @return {void}
 	 */
 	function debug($object) {
@@ -104,7 +104,7 @@
 	};
 	
 	/**
-	 * Construye la interfaz de usuario
+	 * Construye interfaz del usuario
 	 * @return {string} HTML de la interfaz de usuario
 	 */
 	$.fn.twitterReader.buildUi = function() {
@@ -112,7 +112,7 @@
 	};
 	
 	/**
-	 * Establece los defaults del plugin
+	 * Establece defaults del plugin
 	 */
 	$.fn.twitterReader.defaults = {
 		command: 'init'
