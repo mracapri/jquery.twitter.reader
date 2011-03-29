@@ -32,8 +32,10 @@
 (function($) {
 
 	var ONE 	= 1;
-	var COMMAND 	= 'command';
+	var COMMAND = 'command';
 	var CSS 	= 'css';
+	var TWITTER = "http://twitter.com/statuses/user_timeline/";
+	var FORMAT 	= ".json";
 	
 	/**
 	 *  Metodos principales
@@ -44,6 +46,11 @@
 		 * @param {array} [options] Recibe el arreglo de opciones del plugin
 		 */		
 		init : function(options){
+			$.getJSON(TWITTER + 'diabloguardian' + FORMAT + "?count=10&callback=?", function(data){
+				$.each(data, function(){
+					debug(data);
+				});
+			});
 			debug("Se invoco el metodo init");
 		}
 	};

@@ -1,6 +1,6 @@
 OBJETIVO: 
 
-Este plugin tiene la finalidad de agregar un elemento el cual permita leer twits desde el canal de RSS, indicando los siguientes parametros:
+Este plugin tiene la finalidad de agregar un componente html el cual permita leer twits desde el canal de RSS, indicando los siguientes parametros:
 - Usuario de twitter
 - Numero de twitts actuales a mostrar
 - Tiempo en refrescar los ultimos twits

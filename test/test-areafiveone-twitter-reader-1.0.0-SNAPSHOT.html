@@ -3,9 +3,9 @@
 <head> 
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /> 
 <title>Twitter Reader</title>
-<script type='text/javascript' src='../js/jquery-1.4.2.js'></script> 
-<script type='text/javascript' src='../areafiveone-twitter-reader-1.0.0-SNAPSHOT.js'></script> 
+<script type='text/javascript' src='../js/jquery-1.4.2.min.js'></script> 
 <script type='text/javascript' src='js/qunit.js'></script> 
+<script type='text/javascript' src='../areafiveone-twitter-reader-1.0.0-SNAPSHOT.js'></script> 
 
 <style type="text/css" media="all">
 	@import "css/qunit.css";
@@ -13,7 +13,7 @@
 </style>
 <script type='text/javascript'>
 	$().ready(function(){
-		$.twitterReader("#contenedor");	
+		$("#contenedor").twitterReader();
 	});
 </script> 
 </head> 
