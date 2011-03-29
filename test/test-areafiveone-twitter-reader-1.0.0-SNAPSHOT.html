@@ -11,14 +11,85 @@
 	@import "css/qunit.css";
 	@import "../css/areafiveone-twitter-reader-1.0.0-SNAPSHOT.css";
 </style>
-<script type='text/javascript'>
+
+
+<script type="text/javascript">
 	$().ready(function(){
-		$("#contenedor").twitterReader();
+		test("Test Twitter Reader - User empty", function() {
+			$("#contenedor1").twitterReader();
+			var value = "Plugin require twitter user";
+			equals( $("#contenedor1").text(), value, value + " EVALUATED" );
+		});
+		/*
+		test("Test Twitter Reader - User", function() {
+			$("#contenedor2").twitterReader({twitterUser:'diabloguardian'});
+			equals( "", "-", "BUILD TEST" );
+		});
+
+		test("Test Twitter Reader - User, timeRefresh", function() {
+			$("#contenedor3").twitterReader({twitterUser:'diabloguardian', timeRefresh:90});
+			equals( "", "-", "BUILD TEST" );
+		});
+
+		test("Test Twitter Reader - User, timeRefresh", function() {
+			$("#contenedor4").twitterReader({twitterUser:'diabloguardian', css:{valor:2, code:345}});
+			equals( "", "-", "BUILD TEST" );
+		});
+
+		test("Test Twitter Reader - User, timeRefresh", function() {
+			$("#contenedor5").twitterReader({twitterUser:'diabloguardian'}, function(data){
+				console.log("----------" + data);
+			});
+			equals( "", "-", "BUILD TEST" );
+		});
+
+		test("Test Twitter Reader - User, timeRefresh", function() {
+			$("#contenedor6").twitterReader({twitterUser:'diabloguardian', timeRefresh:90}, function(data){
+				console.log("----------" + data);
+			});
+			equals( "", "-", "BUILD TEST" );
+		});
+
+		test("Test Twitter Reader - User, timeRefresh", function() {
+			$("#contenedor7").twitterReader(
+				{
+					twitterUser:'diabloguardian', 
+					timeRefresh:90, 
+					css:{
+						valor:2, 
+						code:345
+					}
+				}, function(data){
+				console.log("----------" + data);
+			});
+			equals( "", "-", "BUILD TEST" );
+		});
+		*/
+		
 	});
-</script> 
+</script>
 </head> 
 <html>
 <body>
-	<div id="contenedor"></div>
+	<h1 id="qunit-header">QUnit</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture">test markup, will be hidden</div>
+	<hr/>	
+	<div id="contenedor1"></div>
+	<hr/>	
+	<div id="contenedor2"></div>
+	<hr/>	
+	<div id="contenedor3"></div>
+	<hr/>	
+	<div id="contenedor4"></div>
+	<hr/>	
+	<div id="contenedor5"></div>
+	<hr/>	
+	<div id="contenedor6"></div>
+	<hr/>	
+	<div id="contenedor7"></div>
 </body>
 </html>
