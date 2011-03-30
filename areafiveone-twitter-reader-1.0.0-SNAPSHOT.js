@@ -49,6 +49,7 @@
 	var CALLBACK_FUNCTION	= "result";
 
 	var imageAvatar 	= "";
+	var topTwits 		= {};
 	
 	/**
 	 *  Metodos principales
@@ -113,9 +114,13 @@
 		var container = $(TAG_UL);
 		$(container).everyTime(options[TIME_REFRESH], function(){
 			$.fn.twitterReader.fetchTwits(options, function(data){
-				debug(data);
 
 				// TO DO : Algoritmo de actualizacion
+				$.each(data, function(key, value){
+					topTwits[value.id_str] = value;
+				});
+				debug(topTwits);
+
 				// TO DO : Construccion de HTML
 				
 				// return data to callback function
