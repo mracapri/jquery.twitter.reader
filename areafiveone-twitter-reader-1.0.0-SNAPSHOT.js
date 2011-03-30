@@ -48,10 +48,10 @@
 	var NUMBER_OF_TWITS	= "numberOfTwits";
 	var CALLBACK_FUNCTION	= "result";
 
-	var imageAvatar 	= "";
-	var firstFeching = true;
-	var firstFechingValues = new Array();
-	var lastFechingValues = new Array();
+	var imageAvatar 		= "";
+	var firstFeching 		= true;
+	var firstFechingValues 	= new Array();
+	var lastFechingValues 	= new Array();
 	
 	/**
 	 *  Metodos principales
@@ -135,11 +135,24 @@
 					var numberOfNewTwits = 0;
 					// Buscamos el id en la ultima lista de valores
 					$.each(lastFechingValues, function(key, value){	
+						lastFechingValues[key] = value;
 						if(lastFechingValues[key].id == firstIdTwit){
 							numberOfNewTwits = key - 0;
 						}							
 					});
-					debug("Numero de nuevos twits: " + numberOfNewTwits);					
+					debug("Numero de nuevos twits: " + numberOfNewTwits);
+					
+					var indexToRefres = lastFechingValues.length - numberOfNewTwits;					
+					if(numberOfNewTwits != 0){
+						debug("Indice a actualizar: " + indexToRefres);
+						
+					}
+					
+					// Removiendo twits
+					for(var indexRefresh = indexToRefres; 
+						indexRefresh < firstFechingValues.length; indexRefresh++){
+						$(container).find("li").eq(indexRefresh).remove();						
+					}
 
 				}
 				
