@@ -49,7 +49,9 @@
 	var CALLBACK_FUNCTION	= "result";
 
 	var imageAvatar 	= "";
-	var topTwits 		= {};
+	var firstFeching = true;
+	var firstFechingValues = new Array();
+	var lastFechingValues = new Array();
 	
 	/**
 	 *  Metodos principales
@@ -60,7 +62,8 @@
 		 * @param {array} [options] Recibe el arreglo de opciones del plugin
 		 */		
 		init : function(options){
-			$.fn.twitterReader.buildUi(options);
+			var html = $.fn.twitterReader.buildUi(options);
+			$(html).appendTo(this);
 		}
 	};
 
@@ -110,25 +113,44 @@
 	 * Construye interfaz del usuario
 	 * @return {string} HTML de la interfaz de usuario
 	 */
+
 	$.fn.twitterReader.buildUi = function(options) {
 		var container = $(TAG_UL);
-		$(container).everyTime(options[TIME_REFRESH], function(){
-			$.fn.twitterReader.fetchTwits(options, function(data){
+		$(container).everyTime(options[TIME_REFRESH], function(){			
+			$.fn.twitterReader.fetchTwits(options, function(data){											
 
-				// TO DO : Algoritmo de actualizacion
-				$.each(data, function(key, value){
-					topTwits[value.id_str] = value;
-				});
-				debug(topTwits);
+				if(firstFeching){						
+					$.each(data, function(key, value){
+						firstFechingValues[key] = value;
+						$("<li/>").text(value.text).appendTo(container);
+					});
+					firstFeching = false;
+				}else{
+					debug("....last fetching...");
+					$.each(data, function(key, value){
+						lastFechingValues[key] = value;
+					});
+					
+					var firstIdTwit = firstFechingValues[0].id;
+					var numberOfNewTwits = 0;
+					// Buscamos el id en la ultima lista de valores
+					$.each(lastFechingValues, function(key, value){	
+						if(lastFechingValues[key].id == firstIdTwit){
+							numberOfNewTwits = key - 0;
+						}							
+					});
+					debug("Numero de nuevos twits: " + numberOfNewTwits);					
 
-				// TO DO : Construccion de HTML
+				}
 				
 				// return data to callback function
 				if($.isFunction(options[CALLBACK_FUNCTION])){
 					options.result("refreshed");
 				}
+
 			});
 		});
+		return container;
 	};
 
 	/**
@@ -184,7 +206,7 @@
 	 */
 	$.fn.twitterReader.defaults = {
 		numberOfTwits: 10,
-		timeRefresh: 10000,
+		timeRefresh: 30000,
 		css:{coner:'30px'},
 		result: function(){}
 	};
