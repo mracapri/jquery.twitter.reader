@@ -38,13 +38,17 @@
 	var FIRST_ELEMENT 	= 0;
 	var DAY 		= 0;	
 	var TAG_SPAN		= "<span/>";
+	var TAG_UL		= "<ul/>";
+	var TAG_LI		= "<ul/>";
 
-	var COMMAND 		= 'command';
-	var CSS 		= 'css';
-	var TWITTER_USER	= 'twitterUser';
-	var TIME_REFRESH	= 'timeRefresh';
+	var COMMAND 		= "command";
+	var CSS 		= "css";
+	var TWITTER_USER	= "twitterUser";
+	var TIME_REFRESH	= "timeRefresh";
+	var NUMBER_OF_TWITS	= "numberOfTwits";
+	var CALLBACK_FUNCTION	= "result";
 
-	var imageAvatar = "";
+	var imageAvatar 	= "";
 	
 	/**
 	 *  Metodos principales
@@ -55,15 +59,7 @@
 		 * @param {array} [options] Recibe el arreglo de opciones del plugin
 		 */		
 		init : function(options){
-			$.getJSON(TWITTER + options[TWITTER_USER] + FORMAT + "?count=10&callback=?", function(data){
-				$.each(data, function(key, value){
-					if(key == FIRST_ELEMENT){
-						imageAvatar = value.user['profile_image_url'];
-					}
-					var twit = $(TAG_SPAN).text(value.text + EMPTY + $.fn.twitterReader.relativeTime(value.created_at));
-				});
-			});
-			if($.isFunction(options.result)){options.result("out");}
+			$.fn.twitterReader.buildUi(options);
 		}
 	};
 
@@ -72,38 +68,27 @@
 	 * @param {array} [options] Recibe el arreglo de opciones del plugin
 	 * @return {object} 
 	 */
-	$.fn.twitterReader = function(options, result) {
-
+	$.fn.twitterReader = function(options) {
 
 		// inicializacion de opciones del plugin antes de contruir el plugin
 		var opts = $.fn.twitterReader.defaults;
-			
-		// Verifica si la funcion ha sido definida
-		if($.isFunction(options)){
-			result = options;
-			options = {};
-			opts = $.extend({}, opts, {"result":result});
-		}else{
-			opts = $.extend({}, options, {"result":result});
-		}
-			
+
 		// verifica si las opciones vienen en closure, sino
 		// le asigna valores por default
 		var _options = !options ? opts : options;
 
 		if(_options.hasOwnProperty(TWITTER_USER)){
-			if(_options.hasOwnProperty(TIME_REFRESH) && !_options.hasOwnProperty(CSS)){
-				_options = $.extend({}, _options, {css : opts[CSS]}, {result : opts.result});
-			}else if(!_options.hasOwnProperty(TIME_REFRESH) && _options.hasOwnProperty(CSS)){
-				_options = $.extend({}, _options, {'timeRefresh' : opts[TIME_REFRESH]}, {result : opts.result});
-			}else{
-				_options = $.extend({}, _options, opts);
+			// asignacion de propiedades del plugin
+			for(key in $.fn.twitterReader.defaults){
+				if(!_options.hasOwnProperty(key)){
+					_options[key] = $.fn.twitterReader.defaults[key];
+				}
 			}
 
 			// itera y reformatea cada elemento que coincide con el elemento
 			return this.each(function() {
 				return methods['init'].apply($(this), [_options]);
-			});
+			});		
 		}else{
 			$(this).text("Plugin require twitter user");
 		}
@@ -124,8 +109,31 @@
 	 * Construye interfaz del usuario
 	 * @return {string} HTML de la interfaz de usuario
 	 */
-	$.fn.twitterReader.buildUi = function() {
-		return "";
+	$.fn.twitterReader.buildUi = function(options) {
+		var container = $(TAG_UL);
+		$(container).everyTime(options[TIME_REFRESH], function(){
+			$.fn.twitterReader.fetchTwits(options, function(data){
+				debug(data);
+
+				// TO DO : Algoritmo de actualizacion
+				// TO DO : Construccion de HTML
+				
+				// return data to callback function
+				if($.isFunction(options[CALLBACK_FUNCTION])){
+					options.result("refreshed");
+				}
+			});
+		});
+	};
+
+	/**
+	 * Obtener datos del timeline del usuario
+	 * @return {arrya} Twits del usuario
+	 */
+	$.fn.twitterReader.fetchTwits = function(options, resultFecthed) {
+		//var url = TWITTER + options[TWITTER_USER] + FORMAT + "?count=" + options[NUMBER_OF_TWITS] + "&callback=?";
+		var url = "http://twitter.com/statuses/user_timeline.json?screen_name=valledelbit&count=5&callback=?";
+		$.getJSON(url, resultFecthed);
 	};
 
 	/**
@@ -150,13 +158,13 @@
 			relativeTime = 'a minute ago';
 		} else if(delta < 120) {
 			relativeTime = 'couple of minutes ago';
-		} else if(delta < (45*60)) {
+		} else if(delta < (45 * 60)) {
 	    		relativeTime = (parseInt(delta / 60)).toString() + ' minutes ago';
-		} else if(delta < (90*60)) {
+		} else if(delta < (90 * 60)) {
 	    		relativeTime = 'an hour ago';
-	  	} else if(delta < (24*60*60)) {
+	  	} else if(delta < (24 * 60 * 60)) {
 	    		relativeTime = '' + (parseInt(delta / 3600)).toString() + ' hours ago';
-	  	} else if(delta < (48*60*60)) {
+	  	} else if(delta < (48 * 60 * 60)) {
 	    		relativeTime = '1 day ago';
 	  	} else {
 	    		relativeTime = (parseInt(delta / 86400)).toString() + ' days ago';
@@ -171,8 +179,10 @@
 	 * Establece defaults del plugin
 	 */
 	$.fn.twitterReader.defaults = {
-		timeRefresh: 60,
-		css:{valor:1}
+		numberOfTwits: 10,
+		timeRefresh: 10000,
+		css:{coner:'30px'},
+		result: function(){}
 	};
 
 })(jQuery);
