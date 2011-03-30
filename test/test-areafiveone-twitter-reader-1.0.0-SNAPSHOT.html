@@ -4,6 +4,8 @@
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /> 
 <title>Twitter Reader</title>
 <script type='text/javascript' src='../js/jquery-1.4.2.min.js'></script> 
+<script type='text/javascript' src='../js/jquery.corner.js'></script> 
+<script type='text/javascript' src='../js/jquery.timers.js'></script> 
 <script type='text/javascript' src='js/qunit.js'></script> 
 <script type='text/javascript' src='../areafiveone-twitter-reader-1.0.0-SNAPSHOT.js'></script> 
 
@@ -15,15 +17,17 @@
 
 <script type="text/javascript">
 	$().ready(function(){
+
+		test("Test Twitter Reader - User", function() {
+			$("#contenedor2").twitterReader({twitterUser:'valledelbit'});
+			equals( "", "", "TO DO.." );
+		});
+
+		/*
 		test("Test Twitter Reader - User empty", function() {
 			$("#contenedor1").twitterReader();
 			var value = "Plugin require twitter user";
 			equals( $("#contenedor1").text(), value, value + " EVALUATED" );
-		});
-		/*
-		test("Test Twitter Reader - User", function() {
-			$("#contenedor2").twitterReader({twitterUser:'diabloguardian'});
-			equals( "", "-", "BUILD TEST" );
 		});
 
 		test("Test Twitter Reader - User, timeRefresh", function() {
