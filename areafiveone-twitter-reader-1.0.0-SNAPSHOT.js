@@ -131,8 +131,7 @@
 	 * @return {arrya} Twits del usuario
 	 */
 	$.fn.twitterReader.fetchTwits = function(options, resultFecthed) {
-		//var url = TWITTER + options[TWITTER_USER] + FORMAT + "?count=" + options[NUMBER_OF_TWITS] + "&callback=?";
-		var url = "http://twitter.com/statuses/user_timeline.json?screen_name=valledelbit&count=5&callback=?";
+		var url = TWITTER + options[TWITTER_USER] + FORMAT + "?count=" + options[NUMBER_OF_TWITS] + "&callback=?";
 		$.getJSON(url, resultFecthed);
 	};
 
