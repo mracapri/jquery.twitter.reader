@@ -30,30 +30,34 @@
  * Inicia closure de plugin
  */
 (function($) {
+	/**
+	 *  Constantes del plugin
+	 */
+	var EMPTY = " ";
+	var ONE = 1;
+	var TWITTER = "http://twitter.com/statuses/user_timeline/";
+	var FORMAT = ".json";
+	var FIRST_ELEMENT = 0;
+	var DAY = 0;	
+	var TAG_SPAN = "<span/>";
+	var TAG_UL = "<ul/>";
+	var TAG_LI = "<li/>";
+	var COMMAND = "command";
+	var CSS = "css";
+	var TWITTER_USER = "twitterUser";
+	var TIME_REFRESH = "timeRefresh";
+	var NUMBER_OF_TWITS = "numberOfTwits";
+	var CALLBACK_FUNCTION = "result";
+	var ESASING = 1900;
 
-	var EMPTY 				= " ";
-	var ONE 				= 1;
-	var TWITTER 			= "http://twitter.com/statuses/user_timeline/";
-	var FORMAT 				= ".json";
-	var FIRST_ELEMENT 		= 0;
-	var DAY 				= 0;	
-	var TAG_SPAN			= "<span/>";
-	var TAG_UL				= "<ul/>";
-	var TAG_LI				= "<li/>";
-
-	var COMMAND 			= "command";
-	var CSS 				= "css";
-	var TWITTER_USER		= "twitterUser";
-	var TIME_REFRESH		= "timeRefresh";
-	var NUMBER_OF_TWITS		= "numberOfTwits";
-	var CALLBACK_FUNCTION	= "result";
-	var ESASING				= 1900;
-
-	var imageAvatar 		= "";
-	var numberOfNewTwits 	= 0;
-	var firstFeching 		= true;
-	var firstFechingValues 	= new Array();
-	var lastFechingValues 	= new Array();
+	/**
+	 *  Variables
+	 */
+	var imageAvatar = "";
+	var numberOfNewTwits = 0;
+	var firstFeching = true;
+	var firstFechingValues = new Array();
+	var lastFechingValues = new Array();
 	
 	/**
 	 *  Metodos principales
@@ -103,7 +107,7 @@
 	
 	/**
 	 * Escribe en el log
-	 * @param {object} $object El objeto escribira en el log del explorer
+	 * @param {object} $object El objeto escribira en el log de la consola
 	 * @return {void}
 	 */
 	function debug($object) {
