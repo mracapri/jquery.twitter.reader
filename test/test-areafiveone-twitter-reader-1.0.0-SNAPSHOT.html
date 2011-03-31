@@ -9,6 +9,15 @@
 <script type='text/javascript' src='js/qunit.js'></script> 
 <script type='text/javascript' src='../areafiveone-twitter-reader-1.0.0-SNAPSHOT.js'></script> 
 
+
+
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="http://brandonaaron.net/javascripts/plugins/mousewheel.js" type="text/javascript"></script>
+<script src="http://manos.malihu.gr/tuts/jquery.mCustomScrollbar.js" type="text/javascript"></script>
+
+
 <style type="text/css" media="all">
 	@import "css/qunit.css";
 	@import "../css/areafiveone-twitter-reader-1.0.0-SNAPSHOT.css";
@@ -19,13 +28,14 @@
 	$().ready(function(){
 
 		test("Test Twitter Reader - User", function() {
-			$("#contenedor2").twitterReader({twitterUser:'valledelbit'});
+			$("#contenedor1").twitterReader({twitterUser:'valledelbit'});
 			equals( "", "", "TO DO.." );
 		});
+		$("#contenedor1").mCustomScrollbar("vertical",400,"easeOutCirc",1.05,"auto","yes","yes",10); 
 
 		/*
 		test("Test Twitter Reader - User empty", function() {
-			$("#contenedor1").twitterReader();
+			$("#contenedor2").twitterReader();
 			var value = "Plugin require twitter user";
 			equals( $("#contenedor1").text(), value, value + " EVALUATED" );
 		});
@@ -82,6 +92,10 @@
 	<ol id="qunit-tests"></ol>
 	<div id="qunit-fixture">test markup, will be hidden</div>
 	<hr/>	
+	
+	<div id="contenedor1"></div>	
+	
+	<!--
 	<div id="contenedor1"></div>
 	<hr/>	
 	<div id="contenedor2"></div>
@@ -95,5 +109,6 @@
 	<div id="contenedor6"></div>
 	<hr/>	
 	<div id="contenedor7"></div>
+	-->
 </body>
 </html>
