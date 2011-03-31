@@ -40,8 +40,9 @@
 	var FIRST_ELEMENT = 0;
 	var DAY = 0;	
 	var TAG_SPAN = "<span/>";
-	var TAG_UL = "<ul/>";
-	var TAG_LI = "<li/>";
+	var TAG_TABLE = "<table/>";
+	var TAG_TR = "<tr/>";
+	var TAG_HR = "<hr/>";
 	var COMMAND = "command";
 	var CSS = "css";
 	var TWITTER_USER = "twitterUser";
@@ -123,7 +124,7 @@
 	$.fn.twitterReader.buildUi = function(options) {
 	
 		// Define el contenedor
-		var container = $(TAG_UL);
+		var container = $(TAG_TABLE);
 		
 		// Carga los twits al iniciar el componente
 		$.fn.twitterReader.fetchTwits(options, function(data){
@@ -131,7 +132,9 @@
 				firstFechingValues[key] = value;
 				var created = $(TAG_SPAN).text($.fn.twitterReader.relativeTime(value.created_at));
 				var textFormated = $.fn.twitterReader.convertUrlToLink(value.text);
-				$(TAG_LI).html(textFormated + EMPTY + $(created).html()).fadeIn(ESASING).appendTo(container);
+				var twit = $(TAG_TR).html(textFormated).fadeIn(ESASING).appendTo(container);
+				$(created).appendTo(twit);
+				$(TAG_HR).appendTo(twit);
 			});		
 		});
 		
@@ -163,7 +166,9 @@
 					$(container).find("li").eq(indexRefresh).hide(ESASING).remove();
 					var created = $(TAG_SPAN).text($.fn.twitterReader.relativeTime(lastFechingValues[indexTwitsAdd].created_at));
 					var textFormated = $.fn.twitterReader.convertUrlToLink(lastFechingValues[indexTwitsAdd].text);
-					var newTwit = $(TAG_LI).html(textFormated + EMPTY + $(created).html()).fadeIn(ESASING).prependTo(container);
+					var newTwit = $(TAG_LI).html(textFormated + EMPTY).fadeIn(ESASING).prependTo(container);
+					$(created).appendTo(twit);
+					$(TAG_HR).appendTo(twit);
 				}
 				
 				// Limpia la ultima lista de datos obtenidos
@@ -221,19 +226,19 @@
 		// Establece el tiempo de creacion del twit
 		var relativeTime = '';		
 		if (delta < 60) {
-			relativeTime = 'hace un minuto';
+			relativeTime = ' hace un minuto';
 		} else if(delta < 120) {
-			relativeTime = 'hace un par de minutos';
+			relativeTime = ' hace un par de minutos';
 		} else if(delta < (45 * 60)) {
-	    	relativeTime = 'hace ' + (parseInt(delta / 60)).toString() + ' minutos';
+	    	relativeTime = ' hace ' + (parseInt(delta / 60)).toString() + ' minutos';
 		} else if(delta < (90 * 60)) {
-	    	relativeTime = 'hace una hora';
+	    	relativeTime = ' hace una hora';
 	  	} else if(delta < (24 * 60 * 60)) {
-	    	relativeTime = 'hace ' + (parseInt(delta / 3600)).toString() + ' horas';
+	    	relativeTime = ' hace ' + (parseInt(delta / 3600)).toString() + ' horas';
 	  	} else if(delta < (48 * 60 * 60)) {
-	    	relativeTime = 'hace un dia';
+	    	relativeTime = ' hace un dia';
 	  	} else {
-	    	relativeTime = 'hace ' + (parseInt(delta / 86400)).toString() + ' dias';
+	    	relativeTime = ' hace ' + (parseInt(delta / 86400)).toString() + ' dias';
 	  	}
 		return relativeTime;
 	}
