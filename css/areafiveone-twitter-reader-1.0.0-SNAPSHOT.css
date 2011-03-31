@@ -1,18 +1,30 @@
 /** CSS File */
 #contenedor1{
 	width: 250px;
-	height: 200px;
-	background-color: #666;
+	height: auto;
+	background-color: #FFF;
+	padding:12px;
+	border:1px solid gray;
 }
 
-#contenedor1 ul{
-	margin: 0px;
-}
-
-#contenedor1 ul  li{
-    list-style-type: none;
-    float: right;
+#contenedor1 table{
+	font-family:Arial;
 	font-size: 11px;
-	font-family: Verdana;
-	margin: 0px 0px 10px 0px
+	color: #000;
 }
+
+#contenedor1 table tr{
+	margin: 10px;
+	padding: 10px;
+}
+
+#contenedor1 span{
+	font-family:Arial;
+	font-size: 11px;
+	color: #666;
+}
+
+#contenedor1 a:link {color:#FF0000;}      /* unvisited link */
+#contenedor1 a:visited {color:#00FF00;}  /* visited link */
+#contenedor1 a:hover {color:#FF00FF;}  /* mouse over link */
+#contenedor1 a:active {color:#0000FF;}  /* selected link */
