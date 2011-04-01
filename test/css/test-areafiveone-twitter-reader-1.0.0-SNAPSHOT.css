@@ -1,0 +1,107 @@
+/** Test 1 */
+#contenedor1{
+	width: 250px;
+	height: auto;
+	background-color: #FFF;
+	padding:12px;
+	border:1px solid #66ccff;
+}
+
+#contenedor1 table{
+	font-size: 11px;
+	color: #000;
+}
+
+#contenedor1 table tr{
+	margin: 10px;
+	padding: 10px;	
+	font-family: 'Droid Serif';
+}
+
+#contenedor1 span{
+	font-family: 'Indie Flower';
+	font-size: 11px;
+	color: #3366ff;
+}
+
+/** Test 2 */
+
+#contenedor2{
+	width: 250px;
+	height: auto;
+	background-color: #FFF;
+	padding:12px;
+	border:1px solid #6633cc;
+}
+
+#contenedor2 table{
+	font-size: 11px;
+	color: #000;
+}
+
+#contenedor2 table tr{
+	margin: 10px;
+	padding: 10px;	
+	font-family: 'Droid Serif';
+}
+
+#contenedor2 span{
+	font-family: 'Indie Flower';
+	font-size: 11px;
+	color: #660099;
+}
+
+/** Test 3 */
+
+#contenedor3{
+	width: 250px;
+	height: auto;
+	background-color: #FFF;
+	padding:12px;
+	border:1px solid #cc0000;
+}
+
+#contenedor3 table{
+	font-size: 11px;
+	color: #000;
+}
+
+#contenedor3 table tr{
+	margin: 10px;
+	padding: 10px;	
+	font-family: 'Droid Serif';
+}
+
+#contenedor3 span{
+	font-family: 'Indie Flower';
+	font-size: 11px;
+	color: #cc3300;
+}
+
+
+/** Test 4 */
+
+#contenedor4{
+	width: 250px;
+	height: auto;
+	background-color: #ffcc00;
+	padding:12px;
+	border:1px solid #66ccff;
+}
+
+#contenedor4 table{
+	font-size: 11px;
+	color: #000;
+}
+
+#contenedor4 table tr{
+	margin: 10px;
+	padding: 10px;	
+	font-family: 'Droid Serif';
+}
+
+#contenedor4 span{
+	font-family: 'Indie Flower';
+	font-size: 11px;
+	color: #ff6633;
+}
