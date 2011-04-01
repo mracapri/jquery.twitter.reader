@@ -11,19 +11,45 @@
 
 <style type="text/css" media="all">
 	@import "css/qunit.css";
-	@import "../css/areafiveone-twitter-reader-1.0.0-SNAPSHOT.css";
+	@import "css/test-areafiveone-twitter-reader-1.0.0-SNAPSHOT.css";	
 </style>
+
+<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
 
 
 <script type="text/javascript">
-	$().ready(function(){
-		
-		test("Test Twitter Reader - User", function() {
-			$("#contenedor1").twitterReader({twitterUser:'betuzo7'});
+	$().ready(function(){		
+		test("Test 1 - Prueba componente con los valores por default, solo estableciendo el usuario", function() {
+			$("#contenedor1").twitterReader({twitterUser:'diabloguardian'},function(){
+				var valorEsperado = 10;
+				var valorDePrueba = $("#contenedor1").length;
+				equals( valorEsperado, valorDePrueba, "Numero de registros identicos al valor por default" );
+			});
 			$("#contenedor1").corner();
-			ok(1 == 1, "Numero de registros identicos al valor por default");
-		});		
-	});
+		});
+		
+		test("Test 2 - Prueba componente con valores: usuario y numberOftTwits", function() {
+			var numeroDeTwits = 5;
+			$("#contenedor2").twitterReader({twitterUser:'valledelbit', numberOfTwits:numeroDeTwits},function(){
+				var valorEsperado = numeroDeTwits;
+				var valorDePrueba = $("#contenedor2").length;
+				equals( valorEsperado, valorDePrueba, "Numero de registros identicos al valor pasado por argumento" );
+			});
+			$("#contenedor2").corner();
+		});
+		
+		test("Test 3 - Prueba componente con valores: usuario, numberOftTwits y timeRefresh > 25000", function() {
+			var numeroDeTwits = 5;
+			$("#contenedor3").twitterReader({twitterUser:'mra_capri', numberOfTwits:numeroDeTwits, timeRefresh: 30000},function(){
+				var valorEsperado = numeroDeTwits;
+				var valorDePrueba = $("#contenedor3").length;
+				equals( valorEsperado, valorDePrueba, "Numero de registros identicos al valor pasado por argumento" );
+			});
+			$("#contenedor3").corner();
+		});
+
+	});	
 </script>
 </head> 
 <html>
@@ -35,10 +61,20 @@
 	<ol id="qunit-tests"></ol>
 	<div id="qunit-fixture">test markup, will be hidden</div>
 	<hr/>	
-	
-
-	
-	<div id="contenedor1"/>
+	<h1>Test 1 - Prueba componente con los valores por default, solo estableciendo el usuario</h1>
+	<hr/>	
+	<div id="contenedor1">
+	</div>
+	<hr/>	
+	<h1>Test 2 - Prueba componente con valores: usuario y numberOftTwits</h1>
+	<hr/>	
+	<div id="contenedor2">
+	</div>
+	<hr/>	
+	<h1>Test 3 - Prueba componente con valores: usuario, numberOftTwits y timeRefresh > 25000</h1>
+	<hr/>
+	<div id="contenedor3">
+	</div>
 
 </body>
 </html>
