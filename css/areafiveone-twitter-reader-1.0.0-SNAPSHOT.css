@@ -12,6 +12,10 @@
 	color: #000;
 }
 
+#contenedor1 hr{
+	border:0px;
+}
+
 #contenedor1 table tr{
 	margin: 10px;
 	padding: 10px;	
