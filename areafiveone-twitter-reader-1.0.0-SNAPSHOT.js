@@ -163,12 +163,12 @@
 				// Refresca los ultimos twits en el componente
 				for(var indexRefresh = indexToRefresh; 
 					indexRefresh < firstFechingValues.length; indexRefresh++){
-					$(container).find("li").eq(indexRefresh).hide(ESASING).remove();
+					$(container).find("tr").eq(indexRefresh).hide(ESASING).remove();
 					var created = $(TAG_SPAN).text($.fn.twitterReader.relativeTime(lastFechingValues[indexTwitsAdd].created_at));
 					var textFormated = $.fn.twitterReader.convertUrlToLink(lastFechingValues[indexTwitsAdd].text);
-					var newTwit = $(TAG_LI).html(textFormated + EMPTY).fadeIn(ESASING).prependTo(container);
-					$(created).appendTo(twit);
-					$(TAG_HR).appendTo(twit);
+					var newTwit = $(TAG_TR).html(textFormated + EMPTY).fadeIn(ESASING).prependTo(container);
+					$(created).appendTo(newTwit);
+					$(TAG_HR).appendTo(newTwit);
 				}
 				
 				// Limpia la ultima lista de datos obtenidos
