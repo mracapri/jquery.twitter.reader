@@ -50,15 +50,6 @@
 	var NUMBER_OF_TWITS = "numberOfTwits";
 	var CALLBACK_FUNCTION = "result";
 	var ESASING = 1900;
-
-	/**
-	 *  Variables
-	 */
-	var imageAvatar = "";
-	var numberOfNewTwits = 0;
-	var firstFeching = true;
-	var firstFechingValues = new Array();
-	var lastFechingValues = new Array();
 	
 	/**
 	 *  Metodos principales
@@ -123,6 +114,10 @@
 
 	$.fn.twitterReader.buildUi = function(options) {
 	
+		var numberOfNewTwits = 0;
+		var firstFechingValues = new Array();
+		var lastFechingValues = new Array();
+	
 		// Define el contenedor
 		var container = $(TAG_TABLE);
 		
@@ -184,7 +179,7 @@
 				}				
 			});
 		});
-		return container;
+		return container;		
 	};
 
 	/**
