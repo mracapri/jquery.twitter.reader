@@ -4,24 +4,24 @@
 	height: auto;
 	background-color: #FFF;
 	padding:12px;
-	border:1px solid gray;
+	border:1px solid #66ccff;
 }
 
 #contenedor1 table{
-	font-family:Arial;
 	font-size: 11px;
 	color: #000;
 }
 
 #contenedor1 table tr{
 	margin: 10px;
-	padding: 10px;
+	padding: 10px;	
+	font-family: 'Droid Serif';
 }
 
 #contenedor1 span{
-	font-family:Arial;
+	font-family: 'Indie Flower';
 	font-size: 11px;
-	color: #666;
+	color: #3366ff;
 }
 
 #contenedor1 a:link {color:#FF0000;}      /* unvisited link */
