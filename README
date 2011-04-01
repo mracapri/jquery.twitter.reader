@@ -1,6 +1,148 @@
 OBJETIVO: 
 
-Este plugin tiene la finalidad de agregar un componente html el cual permita leer twits desde el timeline, indicando los siguientes parametros:
-- Usuario de twitter
-- Numero de twitts actuales a mostrar
-- Tiempo en refrescar los ultimos twits
+Este plugin tiene la finalidad de agregar un componente html el cual permita leer twits desde el timeline y refrescando cada cierto tiempo.
+Configurando los siguientes parametros:
+
+	- Usuario de twitter
+	- Numero de twitts actuales a mostrar
+	- Tiempo en refrescar los ultimos twits
+	
+EJEMPLOS:
+
+Por favor ejecutar las pruebas unitarias del componente (test-areafiveone-twitter-reader-1.0.0-SNAPSHOT.html)
+
+MINI TUTORIAL:
+
+Pre-Requisitos:
+	1.- Referenciar las siguientes bibliotecas jquery al head:
+		
+		<script type='text/javascript' src='js/jquery-1.4.2.min.js'></script> 
+		<script type='text/javascript' src='js/jquery.timers.js'></script> 
+		<script type='text/javascript' src='areafiveone-twitter-reader-1.0.0-SNAPSHOT.js'></script> 
+	
+	2.- Referenciar el siguiente estilo
+	
+		<style type="text/css" media="all">
+			@import "css/areafiveone-twitter-reader-1.0.0-SNAPSHOT.css";	
+		</style>
+	
+	3.- Dentro del metodo ready de jquery, incluir el plugin y especificar el DIV el cual sera transformado 
+		y especificar un mapa con el usuario de twitter, ejemplo:
+	
+		<div id="contenedor1"></div>
+	
+		<script type="text/javascript">
+		$().ready(function(){
+			$("#contenedor1").twitterReader(
+				{twitterUser:'valledelbit'}
+			);
+		});
+		</script>
+		
+HOW TO:
+
+¿Cuales son los parametros del plugin?
+
+	Un mapa :
+		{twitterUser:'valledelbit'}
+	Una funcion callback
+		function(){}
+		
+¿Cuales son los parametros default del plugin?
+
+	A excepcion del usuario, el valor de numberOfTwits es de 10 y el timeRefresh es de 25000 (25 segundos)
+	
+¿Cuales el proposito de la funcion CALLBACK?
+
+	Esta funcion es disparada despues de cada actualizacion
+		
+¿Como especificar los parametros del plugin?
+
+	Primera forma:
+
+		$("#contenedor1").twitterReader(
+			{twitterUser:'valledelbit'}
+		);
+		
+	Segunda forma:
+
+		$("#contenedor1").twitterReader(
+			{
+				twitterUser:'valledelbit',
+				numberOfTwits: 5
+			}
+		);
+		
+	Tercera forma:
+
+		$("#contenedor1").twitterReader(
+			{
+				twitterUser:'valledelbit',
+				timeRefresh: 30000
+			}
+		);
+		
+	Cuarta forma:
+
+		$("#contenedor1").twitterReader(
+			{
+				twitterUser:'valledelbit',
+				timeRefresh: 30000,
+				numberOfTwits: 5
+			}
+		);
+		
+	Quinta forma:
+
+		$("#contenedor1").twitterReader(
+			{
+				twitterUser:'valledelbit',
+				timeRefresh: 30000,
+				numberOfTwits: 5
+			},
+			function(){
+				alert("hola!!");
+			}
+		);
+				
+¿Como cambio el diseño del componente? 
+
+	Modifica la hoja de estilos (areafiveone-twitter-reader-1.0.0-SNAPSHOT.css)
+	
+	1.- Estilo del contenedor definido en el html
+	
+		#contenedor1{
+			width: 250px;
+			height: auto;
+			background-color: #FFF;
+			padding:12px;
+			border:1px solid #66ccff;
+		}
+		
+	2.- Fuente, tamaño y color de los twits
+	
+		#contenedor1 table{
+			font-size: 11px;
+			color: #000;
+			font-family: 'Verdana';
+		}
+		
+	3.- Estilo de la linea entre cada twit
+	
+		#contenedor1 hr{
+			border:0px;
+		}
+		
+	4.- Estilo de la etiqueta de tiempo
+	
+		#contenedor1 span{
+			font-family: 'Courier New';
+			font-size: 10px;
+			color: #3366ff;
+		}
+	5.- Estilo de los links posteados en twitter
+	
+		#contenedor1 a:link {color:#FF0000;}
+		#contenedor1 a:visited {color:#00FF00;}
+		#contenedor1 a:hover {color:#FF00FF;}
+		#contenedor1 a:active {color:#0000FF;}
