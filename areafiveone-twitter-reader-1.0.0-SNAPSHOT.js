@@ -49,20 +49,7 @@
 	var TIME_REFRESH = "timeRefresh";
 	var NUMBER_OF_TWITS = "numberOfTwits";
 	var CALLBACK_FUNCTION = "result";
-<<<<<<< HEAD
 	var ESASING = 2000;
-
-	/**
-	 *  Variables
-	 */
-	var imageAvatar = "";
-	var numberOfNewTwits = 0;
-	var firstFeching = true;
-	var firstFechingValues = new Array();
-	var lastFechingValues = new Array();
-=======
-	var ESASING = 1900;
->>>>>>> 932da534c0cf81b02522c9f7731d4b3adb60fd4a
 	
 	/**
 	 *  Metodos principales
@@ -126,15 +113,14 @@
 	 * @param {array} $data Twits consultados
 	 * @return {object} $container Contenedor principal
 	 */
-	$.fn.twitterReader.drawTwitsInContainer = function(data,container){
+	$.fn.twitterReader.drawTwitsInContainer = function(data, container, firstFechingValues){
 		$.each(data, function(key, value){
 			firstFechingValues[key] = value;
 			var created = $(TAG_SPAN).text($.fn.twitterReader.relativeTime(value.created_at));
 			var textFormated = $.fn.twitterReader.convertUrlToLink(value.text);
-			var twit = $(TAG_TR).html(textFormated).appendTo(container).hide();
+			var twit = $(TAG_TR).html(textFormated).appendTo(container);
 			$(created).appendTo(twit);
 			$(TAG_HR).appendTo(twit);
-			$(twit).fadeIn(ESASING);
 		});
 	}
 	
@@ -154,7 +140,7 @@
 		
 		// Carga los twits al iniciar el componente
 		$.fn.twitterReader.fetchTwits(options, function(data){
-			$.fn.twitterReader.drawTwitsInContainer(data, container);
+			$.fn.twitterReader.drawTwitsInContainer(data, container, firstFechingValues);
 		});
 		
 		// Cada cierto tiempo hace pull al timeline del usuario establecido
@@ -200,7 +186,7 @@
 					// Recarga los twits
 					$.fn.twitterReader.fetchTwits(options, function(data){
 						$(container).find("tr").hide(ESASING).remove();
-						$.fn.twitterReader.drawTwitsInContainer(data, container);
+						$.fn.twitterReader.drawTwitsInContainer(data, container, firstFechingValues);
 					});
 				}
 				
