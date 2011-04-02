@@ -39,16 +39,15 @@
 			$("#contenedor2").corner();
 		});
 		
-		test("Test 3 - Prueba componente con valores: usuario, numberOftTwits y timeRefresh > 25000", function() {
+		test("Test 3 - Prueba componente con valores: usuario, numberOftTwits y timeRefresh > 35000", function() {
 			var numeroDeTwits = 5;
-			$("#contenedor3").twitterReader({twitterUser:'mra_capri', numberOfTwits:numeroDeTwits, timeRefresh: 30000},function(){
+			$("#contenedor3").twitterReader({twitterUser:'mra_capri', numberOfTwits:numeroDeTwits, timeRefresh: 35000},function(){
 				var valorEsperado = numeroDeTwits;
 				var valorDePrueba = $("#contenedor3").length;
 				equals( valorEsperado, valorDePrueba, "Numero de registros identicos al valor pasado por argumento" );
 			});
 			$("#contenedor3").corner();
 		});
-
 	});	
 </script>
 </head> 
