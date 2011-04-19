@@ -121,6 +121,7 @@
 			var twit = $(TAG_TR).html(textFormated).appendTo(container);
 			$(created).appendTo(twit);
 			$(TAG_HR).appendTo(twit);
+			$(twit).find("a").attr("target","_blank");			
 		});
 	}
 	
@@ -177,6 +178,7 @@
 						$(created).appendTo(newTwit);
 						$(TAG_HR).appendTo(newTwit);
 						$(newTwit).fadeIn(ESASING);
+						$(newTwit).find("a").attr("target","_blank");
 					}
 					firstFechingValues = [];
 					firstFechingValues = lastFechingValues;
@@ -214,7 +216,7 @@
 	 * @return {string} Cadena formateada
 	 */
 	$.fn.twitterReader.convertUrlToLink = function(text) {
-		return text.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(text){
+		return text.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(text){			
 			return text.link(text);
 		});
 	};				
